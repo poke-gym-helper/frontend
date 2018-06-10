@@ -1,0 +1,73 @@
+.signin-panel {
+	margin: 0 auto;
+	width: 400px;
+
+	mat-card {
+		padding: 0;
+	}
+
+	.card-real-content {
+		padding: 24px;
+		padding-bottom: 0px;
+	}
+
+	.form-container {
+		display: flex;
+		flex-direction: column;
+	
+		& > * {
+			width: 100%;
+			margin-bottom: 10px;
+		}
+	}
+
+	.buttons-container {
+		display: flex;
+		flex-direction: column;
+
+		.chooseMethod-button {
+			height: 50px;
+			width: 300px;
+			line-height: 50px;
+		}
+
+		.button-row {
+			display: flex;
+			flex-direction: row;
+			margin-bottom: 10px;
+
+			.button-label {
+				
+				.button-label-text {
+					display: inline-block;
+					font-size: 16px;
+					width: 150px;
+				}
+
+				i {
+					vertical-align: middle;
+					margin-top: -4px;
+					margin-right: 10px;
+				}
+			}
+		}
+	}
+
+	.footer-buttons {
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: row;
+		padding: 10px 0;
+
+		button {
+			font-size: 14px;
+			box-sizing: border-box;
+			width: 50%;
+		}
+	}
+}
+
+.facebook-btn {
+	background-color: #3b5998;
+	color: #ffffff;
+}

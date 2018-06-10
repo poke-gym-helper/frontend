@@ -9,6 +9,11 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
+    "paths": {
+      "@pgh-core/*": ["./src/app/core/*"],
+      "@pgh-shared/*": ["./src/app/shared/*"],
+      "@pgh-models/*": ["./src/app/shared/models/*"],
+    },
     "typeRoots": [
       "node_modules/@types"
     ],

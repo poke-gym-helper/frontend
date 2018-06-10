@@ -1,0 +1,68 @@
+<ng-container *ngIf="loading">
+	Loading
+</ng-container>
+
+<div *ngIf="!loading" class="signin-panel">
+	<mat-card>
+		<mat-card-content>
+			<ng-container *ngIf="userAuthorized">
+				<ng-container *ngTemplateOutlet="alreadyAuth"></ng-container>
+			</ng-container>
+
+			<ng-container *ngIf="!userAuthorized">
+				<ng-container *ngTemplateOutlet="loginFormChooseType"></ng-container>
+			</ng-container>
+		</mat-card-content>
+	</mat-card>
+</div>
+
+
+
+<!-- Template - choose login method -->
+<ng-template #loginFormChooseType>
+	
+	<mat-toolbar>
+		<span>Logowanie</span>
+	</mat-toolbar>
+	
+	<div class="card-real-content">
+		<div class="buttons-container">
+			<div class="button-row">
+				<span class="fill-space"></span>
+				<button mat-raised-button class="chooseMethod-button facebook-btn" color="primary" (click)="onConnectFacebook()">
+					<span class="button-label">
+						<i class="fa fa-2x fa-facebook-square"></i>
+						<span class="button-label-text">Połącz z Facebook</span>
+					</span>
+				</button>
+				<span class="fill-space"></span>
+			</div>
+		</div>
+		<br />
+	</div>
+
+</ng-template>
+
+
+<!-- Template - already login -->
+<ng-template #alreadyAuth>
+	<mat-toolbar>
+		<span>Jesteś zalogowany</span>
+	</mat-toolbar>
+
+	<div class="card-real-content">
+		<div class="buttons-container">
+			<div class="button-row">
+				<span class="fill-space"></span>
+				<button mat-raised-button class="chooseMethod-button" color="" (click)="onSignOut()">
+					<span class="button-label">
+						<i class="fa fa-2x fa-sign-out"></i>
+						<span class="button-label-text">Wyloguj</span>
+					</span>
+				</button>
+				<span class="fill-space"></span>
+			</div>
+		</div>
+	</div>
+	<br/>
+</ng-template>

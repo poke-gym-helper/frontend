@@ -1,0 +1,21 @@
+#navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 2;
+}
+
+.app-navbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 8px 16px;
+	line-height: 36px;
+	font-size: 14px;
+	height: 56px;
+}
+
+.fill-space {
+	flex: 1 1 auto;
+}
