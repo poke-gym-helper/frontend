@@ -8,17 +8,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
-import { PokeMapComponent } from './poke-map/poke-map.component';
 import { SharedModule } from '@pgh-shared/shared.module';
+import { PokeMapModule } from './poke-map/poke-map.module';
 
 @NgModule({
 	declarations: [
-		AppComponent,
-		PokeMapComponent
+		AppComponent
 	],
 	imports: [
 		CoreModule,
 		SharedModule,
+		PokeMapModule,
 		BrowserModule,
 		AppRoutingModule,
 		ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
