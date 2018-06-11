@@ -14,6 +14,10 @@ export class GymSearchComponent {
 		@Inject(MAT_DIALOG_DATA) public data: any
 	) {}
 
+	onEnter(): void {
+		this.dialogRef.close(this.data.name);
+	}
+
 	onNoClick(): void {
 		this.dialogRef.close();
 	}

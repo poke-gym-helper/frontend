@@ -1,6 +1,11 @@
 <div mat-dialog-content>
 	<mat-form-field>
-		<input matInput placeholder="Szukany GYM" [(ngModel)]="data.name" cdkFocusInitial>
+		<input 
+			matInput
+			placeholder="Szukany GYM"
+			[(ngModel)]="data.name"
+			(keyup.enter)="onEnter()"
+			cdkFocusInitial>
 	</mat-form-field>
 </div>
 <div mat-dialog-actions>

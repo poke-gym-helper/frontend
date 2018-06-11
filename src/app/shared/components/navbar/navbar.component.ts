@@ -29,7 +29,6 @@ export class NavbarComponent implements OnInit {
 	}
 
 	private searchGym(term: string): void {
-		console.log(`Searching ${term}`);
 		this.mapService.tryFind(term);
 	}
 
