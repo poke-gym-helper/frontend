@@ -19,3 +19,25 @@
 .fill-space {
 	flex: 1 1 auto;
 }
+
+::ng-deep .mat-menu-panel {
+	min-width: 150px !important;
+}
+
+.account-wide-menu {
+	display: inline-block;
+}
+
+.account-short-menu {
+	display: none;
+}
+
+@media only screen and (max-width: 500px) {
+	.account-wide-menu {
+		display: none;
+	}
+	
+	.account-short-menu {
+		display: inline-block;
+	}
+}

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import {
 	MatToolbarModule,
@@ -12,36 +14,57 @@ import {
 	MatIconModule,
 	MatDividerModule,
 	MatSnackBarModule,
-	MatMenuModule
+	MatDialogModule,
+	MatAutocompleteModule,
+	MatMenuModule,
+	MAT_DIALOG_DEFAULT_OPTIONS
 } from '@angular/material';
 
-import { DebugToolComponent } from './components/debug-tool/debug-tool.component';
-import { RouterModule } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { GymSearchComponent } from '@pgh-shared/components/gym-search/gym-search.component';
 
 @NgModule({
 	imports: [
 		RouterModule,
 		CommonModule,
 		HttpClientModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatInputModule,
+		MatDividerModule,
+		MatAutocompleteModule,
+		MatIconModule,
+		MatDialogModule,
 		MatToolbarModule,
+		MatMenuModule,
 		MatButtonModule
+	],
+	entryComponents: [
+		GymSearchComponent
 	],
 	declarations: [
 		NavbarComponent,
-		DebugToolComponent
+		GymSearchComponent
 	],
 	exports: [
 		HttpClientModule,
+		ReactiveFormsModule,
+		FormsModule,
 		MatCardModule,
 		MatToolbarModule,
 		MatDividerModule,
+		MatDialogModule,
 		MatInputModule,
 		MatButtonModule,
+		MatIconModule,
+		MatMenuModule,
 		MatFormFieldModule,
 		MatSnackBarModule,
-
-		NavbarComponent,
-		DebugToolComponent
+		MatAutocompleteModule,
+		NavbarComponent
+	],
+	providers: [
+		{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, disableClose: true, autoFocus: true } }
 	]
 })
 export class SharedModule { }

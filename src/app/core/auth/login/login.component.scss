@@ -71,3 +71,11 @@
 	background-color: #3b5998;
 	color: #ffffff;
 }
+
+
+@media only screen and (max-width: 500px) {
+	.signin-panel {
+		width: 90%;
+		padding: 5%;
+	}
+}

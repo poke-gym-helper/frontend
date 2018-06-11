@@ -1,0 +1,9 @@
+<div mat-dialog-content>
+	<mat-form-field>
+		<input matInput placeholder="Szukany GYM" [(ngModel)]="data.name" cdkFocusInitial>
+	</mat-form-field>
+</div>
+<div mat-dialog-actions>
+	<button mat-button (click)="onNoClick()">Anuluj</button>
+	<button mat-button [mat-dialog-close]="data.name">Szukaj</button>
+</div>

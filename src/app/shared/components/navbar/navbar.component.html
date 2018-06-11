@@ -4,6 +4,29 @@
 
 		<span class="fill-space"></span>
 
-		<a mat-button (click)="logout()">Wyloguj</a>
+		<a mat-icon-button (click)="showSearch()">
+			<mat-icon>search</mat-icon>
+		</a>
+
+		<div class="account-wide-menu">
+			<a mat-button [matMenuTriggerFor]="accountMenu">
+				<span>{{userName}}</span>{{" "}}<mat-icon>account_circle</mat-icon>
+			</a>
+		</div>
+
+		<div class="account-short-menu">
+			<a mat-icon-button [matMenuTriggerFor]="accountMenu">
+				<mat-icon>account_circle</mat-icon>
+			</a>
+		</div>
+		
 	</mat-toolbar>
 </div>
+
+<mat-menu #accountMenu="matMenu">
+	<button mat-menu-item>Profil</button>
+	<button mat-menu-item>Ustawienia</button>
+	<mat-divider></mat-divider>
+	<button mat-menu-item (click)="logout()">Wyloguj</button>
+</mat-menu>
+	  

@@ -5,12 +5,24 @@
 */
 
 export const AppConf = {
-	firebase: {
-		apiKey: '',
-		authDomain: '',
-		databaseURL: '',
-		projectId: '',
-		storageBucket: '',
-		messagingSenderId: ''
+	prod: {
+		firebase: {
+			apiKey: '',
+			authDomain: '',
+			databaseURL: '',
+			projectId: '',
+			storageBucket: '',
+			messagingSenderId: ''
+		}
+	},
+	dev: {
+		firebase: {
+			apiKey: '',
+			authDomain: '',
+			databaseURL: '',
+			projectId: '',
+			storageBucket: '',
+			messagingSenderId: ''
+		}
 	}
 };
