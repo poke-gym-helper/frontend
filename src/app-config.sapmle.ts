@@ -24,5 +24,38 @@ export const AppConf = {
 			storageBucket: '',
 			messagingSenderId: ''
 		}
+	},
+	gymsData: {
+		'type': 'FeatureCollection',
+		'features': [
+			{
+				'type': 'Feature',
+				'properties': {
+					'name': 'Gym Name 1',
+					'id': 'abc123'
+				},
+				'geometry': {
+					'type': 'Point',
+					'coordinates': [
+						16.91,
+						52.32
+					]
+				}
+			},
+			{
+				'type': 'Feature',
+				'properties': {
+					'name': 'Gym Name 2',
+					'id': 'cba321'
+				},
+				'geometry': {
+					'type': 'Point',
+					'coordinates': [
+						16.94,
+						52.38
+					]
+				}
+			}
+		]
 	}
 };
