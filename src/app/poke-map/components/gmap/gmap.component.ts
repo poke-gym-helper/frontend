@@ -1,16 +1,30 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { GymsService } from '../../services/gyms.service';
 import { MapService } from '../../services/map.service';
+import { BehaviorSubject } from 'rxjs';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
+const anim_fadeInOut = trigger('fadeInOut', [
+		state('active', style({ opacity: 1 })),
+		transition('void => *', [
+			style({ opacity: 0 }),
+			animate('200ms ease-in')
+		]),
+		transition('* => void', animate('100ms ease-out', style({ opacity: 0 })))
+	]);
 
 @Component({
 	selector: 'app-gmap',
 	templateUrl: './gmap.component.html',
-	styleUrls: ['./gmap.component.scss']
+	styleUrls: ['./gmap.component.scss'],
+	animations: [ anim_fadeInOut ]
 })
 export class GmapComponent implements OnInit {
 
 	@ViewChild('gmap') gmapElement: any;
 	map: google.maps.Map;
+
+	public showGymInfo: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
 	private centerPosition: google.maps.LatLng = new google.maps.LatLng(52.386445, 16.955266); // Poznan location
 	private gymsLocations: google.maps.Marker[] = [];
@@ -23,38 +37,41 @@ export class GmapComponent implements OnInit {
 		labelOrigin: new google.maps.Point(15, -12)
 	};
 
+	private readonly mapProps = {
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		center: this.centerPosition,
+		fullscreenControl: false,
+		streetViewControl: true,
+		mapTypeControl: false,
+		scaleControl: false,
+		rotateControl: true,
+		zoomControl: true,
+		zoom: 15
+	};
+
 	constructor(
 		private readonly gymsService: GymsService,
-		private readonly mapService: MapService
+		private readonly mapService: MapService,
+		private readonly _zone: NgZone
 	) {}
 
 	ngOnInit() {
 		this.setUpGoogleMap();
 		this.loadGymLocations();
 
+		NgZone.assertInAngularZone();
+
 		this.mapService.searcher
 			.subscribe(gymTerm => this.findGym(gymTerm));
 	}
 
 	private setUpGoogleMap(): void {
-		const mapProp = {
-			mapTypeId: google.maps.MapTypeId.ROADMAP,
-			center: this.centerPosition,
-			fullscreenControl: false,
-			streetViewControl: true,
-			mapTypeControl: false,
-			scaleControl: false,
-			rotateControl: true,
-			zoomControl: true,
-			zoom: 15
-		};
 
-		this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
+		this.map = new google.maps.Map(this.gmapElement.nativeElement, this.mapProps);
 
 		try {
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(pos => {
-					console.log(pos);
 					this.centerPosition = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 					this.map.setCenter(this.centerPosition);
 				});
@@ -80,11 +97,10 @@ export class GmapComponent implements OnInit {
 			map: this.map
 		});
 
-		marker.addListener('click', function() {
-			const infowindow = new google.maps.InfoWindow({
-				content: title
+		marker.addListener('click', () => {
+			this._zone.run(() => {
+				this.showGymInfo.next(true);
 			});
-			infowindow.open(this.map, marker);
 		});
 
 		this.gymsLocations.push(marker);
@@ -124,4 +140,7 @@ export class GmapComponent implements OnInit {
 		}
 	}
 
+	private closeGymInfo(): void {
+		this.showGymInfo.next(false);
+	}
 }

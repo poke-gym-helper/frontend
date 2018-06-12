@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { GmapComponent } from './components/gmap/gmap.component';
 import { PokeMapComponent } from './poke-map.component';
 import { SharedModule } from '@pgh-shared/shared.module';
+import { GymInfoComponent } from './components/gym-info/gym-info.component';
 
 @NgModule({
 	imports: [
@@ -11,7 +12,8 @@ import { SharedModule } from '@pgh-shared/shared.module';
 	],
 	declarations: [
 		GmapComponent,
-		PokeMapComponent
+		PokeMapComponent,
+		GymInfoComponent
 	],
 	exports: [
 		GmapComponent,

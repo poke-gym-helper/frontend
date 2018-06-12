@@ -1,0 +1,39 @@
+#gym-info {
+    position: fixed;
+    top: 72px;
+    left: 16px;
+    min-width: 180px;
+    max-width: 220px;
+}
+
+.title-flex {
+
+    display: flex;
+
+    .info-title {
+        flex: 1 1 auto;
+        color: rgba(0, 0, 0, 0.87);
+        font-family: "Roboto", "Helvetica Neue", sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        max-width: calc(100% - 20px);
+    }
+
+    .title-close-btn {
+        margin-top: -24px;
+        margin-right: -24px;
+    }
+}
+
+h3 {
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 6px;
+    max-width: 180px;
+}
