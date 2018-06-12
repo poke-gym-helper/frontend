@@ -25,8 +25,34 @@ const fakeData = {
 			'geometry': {
 				'type': 'Point',
 				'coordinates': [
-					16.9424307346344,
-					52.38655066622549
+					16.94242000579834,
+					52.38631984359589
+				]
+			}
+		},
+		{
+			'type': 'Feature',
+			'properties': {
+				'name': 'Kapliczka St. Waltera'
+			},
+			'geometry': {
+				'type': 'Point',
+				'coordinates': [
+					16.944418251514435,
+					52.38506584992411
+				]
+			}
+		},
+		{
+			'type': 'Feature',
+			'properties': {
+				'name': 'Dziewczynka z misiem'
+			},
+			'geometry': {
+				'type': 'Point',
+				'coordinates': [
+					16.947207748889923,
+					52.384034470731095
 				]
 			}
 		}
