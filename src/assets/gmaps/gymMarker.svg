@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svg
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:cc="http://creativecommons.org/ns#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+	version="1.1"
+	id="GymMarker"
+	x="0px"
+	y="0px"
+	viewBox="0 0 512 512"
+	style="enable-background:new 0 0 512 512;"
+	xml:space="preserve"
+	width="512px"
+	height="512px">
+
+
+	<g id="g3730">
+		<circle
+			cx="256.004"
+			cy="192.004"
+			r="64"
+			fill="#D80027"
+			style="fill:#c9000f;fill-opacity:1" />
+
+		<path
+			d="M 319.84662,389.32342 380.241,338.155 C 423.306,301.592 448.005,248.322 448.005,192.009 448.004,137.466 424.68,85.299 384.001,48.903 342.77,11.987 289.507,-4.909 234.046,1.237 150.125,10.57 79.653,77.633 66.475,160.716 c -10.719,67.563 13.844,134.042 65.701,177.792 18.084,15.271 43.70648,36.74483 60.41043,50.91766 16.84206,20.83716 56.93696,68.99303 63.52738,106.04872 5.09857,-37.05569 46.10154,-85.21156 63.73281,-106.15096 z M 340.254,202.674 c -5.318,41.987 -40.857,74.667 -84.259,74.667 -43.402,0 -78.941,-32.68 -84.259,-74.667 H 95.242188 c -0.444,-7.056 -0.479,-14.161 -0.051,-21.333 H 171.735 c 5.318,-41.987 40.857,-74.667 84.259,-74.667 43.402,0 78.941,32.68 84.259,74.667 h 76.56381 c 0.224,3.552 0.569,7.087 0.569,10.667 0,3.583 -0.361,7.115 -0.585,10.667 H 340.254 Z"
+			style="fill:#c9000f;fill-opacity:1"
+			inkscape:connector-curvature="0"
+			sodipodi:nodetypes="cccccccccccsccccsccsccc" />
+	</g>
+</svg>

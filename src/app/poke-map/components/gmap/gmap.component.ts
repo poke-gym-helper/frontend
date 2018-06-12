@@ -12,8 +12,16 @@ export class GmapComponent implements OnInit {
 	@ViewChild('gmap') gmapElement: any;
 	map: google.maps.Map;
 
-	private centerPosition: google.maps.LatLng = new google.maps.LatLng(52.408, 16.934); // Poznan location
+	private centerPosition: google.maps.LatLng = new google.maps.LatLng(52.386445, 16.955266); // Poznan location
 	private gymsLocations: google.maps.Marker[] = [];
+
+	private readonly gymMarker: google.maps.Icon = {
+		url: '/assets/gmaps/gymMarker.svg',
+		scaledSize: new google.maps.Size(30, 30),
+		origin: new google.maps.Point(0, 0),
+		anchor: new google.maps.Point(15, 25),
+		labelOrigin: new google.maps.Point(15, -12)
+	};
 
 	constructor(
 		private readonly gymsService: GymsService,
@@ -30,13 +38,15 @@ export class GmapComponent implements OnInit {
 
 	private setUpGoogleMap(): void {
 		const mapProp = {
-			center: new google.maps.LatLng(52.408, 16.934),
-			zoom: 14,
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			center: this.centerPosition,
+			fullscreenControl: false,
 			streetViewControl: true,
-			mapTypeControlOptions: {
-				mapTypeIds: []
-			}
+			mapTypeControl: false,
+			scaleControl: false,
+			rotateControl: true,
+			zoomControl: true,
+			zoom: 15
 		};
 
 		this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
@@ -52,27 +62,39 @@ export class GmapComponent implements OnInit {
 		} catch (e) { /* Can not get localization. */ }
 	}
 
+	private makeGymMarker(gym: any): void {
+		const coords = gym.geometry.coordinates;
+		const title = gym.properties.name;
+		const position = new google.maps.LatLng(coords[1], coords[0]);
+
+		const marker = new google.maps.Marker({
+			position: position,
+			icon: this.gymMarker,
+			title: title,
+			label: {
+				text: title,
+				fontSize: '16px',
+				fontWeight: '500',
+				fontFamily: 'Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif'
+			},
+			map: this.map
+		});
+
+		marker.addListener('click', function() {
+			const infowindow = new google.maps.InfoWindow({
+				content: title
+			});
+			infowindow.open(this.map, marker);
+		});
+
+		this.gymsLocations.push(marker);
+	}
+
 	private loadGymLocations(): void {
 		this.gymsService.getGeoJson()
 			.subscribe(geoJson => {
 				geoJson.features.forEach(gym => {
-					const coords = gym.geometry.coordinates;
-					const title = gym.properties.name;
-					const position = new google.maps.LatLng(coords[1], coords[0]);
-					const marker = new google.maps.Marker({
-						position,
-						title,
-						map: this.map
-					});
-
-					marker.addListener('click', function() {
-						const infowindow = new google.maps.InfoWindow({
-							content: title
-						});
-						infowindow.open(this.map, marker);
-					});
-
-					this.gymsLocations.push(marker);
+					this.makeGymMarker(gym);
 				});
 			});
 	}
@@ -86,12 +108,16 @@ export class GmapComponent implements OnInit {
 					.toLowerCase()
 					.search(term.toLocaleLowerCase()) !== -1) {
 
-				this.map.setCenter(this.gymsLocations[i].getPosition());
-				this.gymsLocations[i].setAnimation(google.maps.Animation.BOUNCE);
+				this.map.setZoom(17);
+				this.map.panTo(this.gymsLocations[i].getPosition());
+
+				setTimeout(() => {
+					this.gymsLocations[i].setAnimation(google.maps.Animation.BOUNCE);
+				}, 1000);
 
 				setTimeout(() => {
 					this.gymsLocations[i].setAnimation(null);
-				}, 2500);
+				}, 3500);
 
 				return;
 			}
