@@ -1,8 +1,8 @@
-<ng-container *ngIf="!auth.ready">
+<ng-container *ngIf="!ready">
 	<app-loading></app-loading>
 </ng-container>
 
-<div *ngIf="auth.ready" class="signin-panel">
+<div *ngIf="ready" class="signin-panel">
 	<mat-card>
 		<mat-card-content>
 			<ng-container *ngIf="userAuthorized">

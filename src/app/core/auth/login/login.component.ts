@@ -8,7 +8,7 @@ import { AuthService } from '@pgh-core/auth/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-	userAuthorized = false;
+	public userAuthorized = false;
 
 	constructor(private auth: AuthService) {}
 
@@ -19,11 +19,15 @@ export class LoginComponent implements OnInit {
 			});
 	}
 
-	onConnectFacebook() {
+	public get ready(): boolean {
+		return this.auth.ready;
+	}
+
+	public onConnectFacebook() {
 		this.auth.facebookLogin();
 	}
 
-	onSignOut() {
+	public onSignOut() {
 		this.auth.signOut();
 	}
 }
