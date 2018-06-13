@@ -3,7 +3,7 @@
 	<mat-card-subtitle>
 		<div class="title-flex">
 			<div class="info-title">
-				Kids Playground
+				{{gymData?.properties?.name}}
 			</div>
 			
 			<button class="title-close-btn" mat-icon-button (click)="onClose()">
@@ -18,21 +18,21 @@
 	<mat-card-content>
 		<h3>RAID</h3>
 		<p>
-			Start o 13:30
+			{{raidInfo}}
 		</p>
 		
 		<br />
 
 		<h3>OPIS</h3>
 		<p>
-			Plac zabaw między blokami na osiedlu Piastowskim.
+			{{gymDesc}}
 		</p>	
 	</mat-card-content>
 
 	<mat-divider></mat-divider>
 	
 	<mat-card-actions>
-		<button mat-button>Zapisz się</button>
-		<button mat-button>Nawiguj</button>
+		<button mat-button disabled>Zapisz się</button>
+		<button mat-button (click)="startNavigate()">Nawiguj</button>
 	</mat-card-actions>
 </mat-card>

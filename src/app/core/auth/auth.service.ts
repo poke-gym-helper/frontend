@@ -17,6 +17,7 @@ import { switchMap, map } from 'rxjs/operators';
 export class AuthService {
 
 	public user: Observable<IUser>;
+	public ready = false;
 
 	constructor(
 		private readonly afAuth: AngularFireAuth,
@@ -24,7 +25,23 @@ export class AuthService {
 		private readonly router: Router,
 	) {
 		this.afAuth.auth.useDeviceLanguage();
+		this.checkUserAfterRedirect();
+		this.loadUser();
+	}
 
+	private checkUserAfterRedirect(): void {
+		firebase.auth().getRedirectResult()
+			.then(result => {
+				if (result.user) {
+					this.updateUserData(result.user);
+					this.router.navigate(['/']);
+				} else {
+					this.ready = true;
+				}
+			});
+	}
+
+	private loadUser(): void {
 		this.user = this.afAuth.authState
 			.pipe(
 				switchMap((user: firebase.User) => {
@@ -48,6 +65,7 @@ export class AuthService {
 		this.afAuth.auth.signOut()
 			.then(() => {
 				this.router.navigate(['/auth/login']);
+				this.ready = true;
 			})
 			.catch(e => console.log(e.code));
 	}
@@ -58,7 +76,7 @@ export class AuthService {
 	}
 
 	private oAuthLogin(provider) {
-		return this.afAuth.auth.signInWithPopup(provider)
+		return this.afAuth.auth.signInWithRedirect(provider)
 			.then(cred => {
 				this.updateUserData(cred.user);
 				this.router.navigate(['/']);

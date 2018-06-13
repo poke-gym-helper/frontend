@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@pgh-core/auth/auth.service';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { GymSearchComponent } from '@pgh-shared/components/gym-search/gym-search.component';
 import { MapService } from '../../../poke-map/services/map.service';
@@ -24,7 +22,7 @@ export class NavbarComponent implements OnInit {
 	ngOnInit() {
 		this.authService.user
 			.subscribe(usr => {
-				this.userName = usr.displayName || usr.email || `unknown`;
+				this.userName = (usr) ? usr.displayName || usr.email || `unknown` : null;
 			});
 	}
 

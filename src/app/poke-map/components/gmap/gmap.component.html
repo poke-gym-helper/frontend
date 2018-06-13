@@ -1,5 +1,10 @@
 <div #gmap class="gmap"></div>
 
 <ng-container *ngIf="showGymInfo | async">
-    <app-gym-info [@fadeInOut] (closeHandler)="closeGymInfo()"></app-gym-info>
+    <app-gym-info 
+        [@fadeInOut]
+        [coords]="gymInfoData?.coords"
+        [gymData]="gymInfoData?.gymData"
+        (closeHandler)="closeGymInfo()">
+    </app-gym-info>
 </ng-container>

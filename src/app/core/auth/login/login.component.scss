@@ -1,5 +1,5 @@
 .signin-panel {
-	margin: 0 auto;
+	margin: 40px auto;
 	width: 400px;
 
 	mat-card {
@@ -24,18 +24,20 @@
 	.buttons-container {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 
 		.chooseMethod-button {
 			height: 50px;
-			width: 300px;
 			line-height: 50px;
+			width: 100%;
 		}
-
+		
 		.button-row {
 			display: flex;
 			flex-direction: row;
 			margin-bottom: 10px;
-
+			width: calc(100% - 20px);
+			
 			.button-label {
 				
 				.button-label-text {
@@ -77,5 +79,6 @@
 	.signin-panel {
 		width: 90%;
 		padding: 5%;
+		margin-top: 80px;
 	}
 }

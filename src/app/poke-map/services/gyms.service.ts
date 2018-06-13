@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 
 import { AppConf } from '../../../app-config';
+import { IGym } from '@pgh-shared/models/i-gym';
 
 @Injectable({
 	providedIn: 'root'
@@ -10,7 +11,7 @@ export class GymsService {
 
 	constructor() {}
 
-	public getGeoJson() {
+	public getGeoJson(): Observable<{'type': string, 'features': IGym[]}> {
 		return of(AppConf.gymsData);
 	}
 }

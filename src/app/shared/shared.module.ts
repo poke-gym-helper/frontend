@@ -22,6 +22,7 @@ import {
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { GymSearchComponent } from '@pgh-shared/components/gym-search/gym-search.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
 	imports: [
@@ -44,7 +45,8 @@ import { GymSearchComponent } from '@pgh-shared/components/gym-search/gym-search
 	],
 	declarations: [
 		NavbarComponent,
-		GymSearchComponent
+		GymSearchComponent,
+		LoadingComponent
 	],
 	exports: [
 		HttpClientModule,
@@ -61,7 +63,8 @@ import { GymSearchComponent } from '@pgh-shared/components/gym-search/gym-search
 		MatFormFieldModule,
 		MatSnackBarModule,
 		MatAutocompleteModule,
-		NavbarComponent
+		NavbarComponent,
+		LoadingComponent
 	],
 	providers: [
 		{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true, disableClose: true, autoFocus: true } }

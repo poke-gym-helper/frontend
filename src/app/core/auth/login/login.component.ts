@@ -8,7 +8,6 @@ import { AuthService } from '@pgh-core/auth/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-	loading = true;
 	userAuthorized = false;
 
 	constructor(private auth: AuthService) {}
@@ -17,7 +16,6 @@ export class LoginComponent implements OnInit {
 		this.auth.user
 			.subscribe(user => {
 				this.userAuthorized = !!user;
-				this.loading = false;
 			});
 	}
 

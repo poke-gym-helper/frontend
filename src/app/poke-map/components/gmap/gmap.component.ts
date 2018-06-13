@@ -3,6 +3,7 @@ import { GymsService } from '../../services/gyms.service';
 import { MapService } from '../../services/map.service';
 import { BehaviorSubject } from 'rxjs';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { IGym } from '@pgh-shared/models/i-gym';
 
 const anim_fadeInOut = trigger('fadeInOut', [
 		state('active', style({ opacity: 1 })),
@@ -22,9 +23,10 @@ const anim_fadeInOut = trigger('fadeInOut', [
 export class GmapComponent implements OnInit {
 
 	@ViewChild('gmap') gmapElement: any;
-	map: google.maps.Map;
+	public map: google.maps.Map;
 
 	public showGymInfo: BehaviorSubject<boolean> = new BehaviorSubject(false);
+	public gymInfoData: { coords: google.maps.LatLng, gymData: IGym } = null;
 
 	private centerPosition: google.maps.LatLng = new google.maps.LatLng(52.386445, 16.955266); // Poznan location
 	private gymsLocations: google.maps.Marker[] = [];
@@ -79,7 +81,7 @@ export class GmapComponent implements OnInit {
 		} catch (e) { /* Can not get localization. */ }
 	}
 
-	private makeGymMarker(gym: any): void {
+	private makeGymMarker(gym: IGym): void {
 		const coords = gym.geometry.coordinates;
 		const title = gym.properties.name;
 		const position = new google.maps.LatLng(coords[1], coords[0]);
@@ -99,6 +101,10 @@ export class GmapComponent implements OnInit {
 
 		marker.addListener('click', () => {
 			this._zone.run(() => {
+				this.gymInfoData = {
+					gymData: gym,
+					coords: position
+				};
 				this.showGymInfo.next(true);
 			});
 		});
@@ -140,7 +146,7 @@ export class GmapComponent implements OnInit {
 		}
 	}
 
-	private closeGymInfo(): void {
+	public closeGymInfo(): void {
 		this.showGymInfo.next(false);
 	}
 }

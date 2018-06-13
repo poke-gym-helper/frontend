@@ -1,8 +1,8 @@
-<ng-container *ngIf="loading">
-	Loading
+<ng-container *ngIf="!auth.ready">
+	<app-loading></app-loading>
 </ng-container>
 
-<div *ngIf="!loading" class="signin-panel">
+<div *ngIf="auth.ready" class="signin-panel">
 	<mat-card>
 		<mat-card-content>
 			<ng-container *ngIf="userAuthorized">
@@ -15,8 +15,6 @@
 		</mat-card-content>
 	</mat-card>
 </div>
-
-
 
 <!-- Template - choose login method -->
 <ng-template #loginFormChooseType>
@@ -31,7 +29,6 @@
 				<span class="fill-space"></span>
 				<button mat-raised-button class="chooseMethod-button facebook-btn" color="primary" (click)="onConnectFacebook()">
 					<span class="button-label">
-						<i class="fa fa-2x fa-facebook-square"></i>
 						<span class="button-label-text">Połącz z Facebook</span>
 					</span>
 				</button>
