@@ -15,23 +15,10 @@ export class GymInfoComponent {
 	public raidInfo = 'Brak danych';
 	public gymDesc = 'Brak opisu';
 
-	private readonly directionUrl = `maps.google.com/maps/dir/?api=1`;
+	private readonly directionUrl = `https://www.google.com/maps/dir`;
 
-	private openNativeMap(lat: number, long: number, mode: string = 'walking'): void {
-		const platform = (navigator) ? navigator.platform : 'unknow';
-		let urlPrefix: string = null;
-
-		if (
-			(platform.indexOf('iPhone') !== -1) ||
-			(platform.indexOf('iPad') !== -1) ||
-			(platform.indexOf('iPod') !== -1)
-		) {
-			urlPrefix = `maps://`;
-		} else {
-			urlPrefix = `https://`;
-		}
-
-		const gmapUrl = `${urlPrefix}${this.directionUrl}&destination=${lat},${long}&travelmode=${mode}`;
+	private openNativeMap(lat: number, long: number): void {
+		const gmapUrl = `${this.directionUrl}/${''}/${lat},${long}`;
 		window.open(gmapUrl);
 	}
 
